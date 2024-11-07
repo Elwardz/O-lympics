@@ -175,7 +175,7 @@ public class Main {
 
         // Verificar se a complexidade está correta
         return correctComplexity.equals(userComplexity);
-    }
+    } // testin error
 
     // Método para mapear a escolha do usuário para a complexidade correspondente
     public static String getComplexityFromChoice(int choice) {
