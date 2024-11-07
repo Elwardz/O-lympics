@@ -9,7 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        // Mapeando a complexidade de cada code
+        // Mapeando a complexidade de cada Code
         String[] complexidades = {
                 "O(1)", // Code1
                 "O(1)",    // Code2
