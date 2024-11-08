@@ -1,89 +1,105 @@
 package application;
 
 import codes.*;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
 
-        // Mapeando a complexidade de cada Code
-        String[] complexidades = {
-                "O(1)", // Code1
-                "O(1)",    // Code2
-                "O(1)", // Code3
-                "O(log n)", // Code4
-                "O(log n)",    // Code5
-                "O(log n)",  // Code6
-                "O(n)",  // Code7
-                "O(n)",    // Code8
-                "O(n)",  // Code9
-                "O(n log n)", // Code10
-                "O(n log n)",  // Code11
-                "O(n log n)",  // Code12
-                "O(n^2)",  // Code13
-                "O(n^2)",  // Code14
-                "O(n^2)",  // Code15
-                "O(n^3)",  // Code16
-                "O(n^3)", // Code17
-                "O(n^3)",  // Code18
-                "O(2^n)",  // Code19
-                "O(2^n)",  // Code20
-                "O(2^n)", // Code21
-                "O(n!)",  // Code22
-                "O(n!)",  // Code23
-                "O(n!)"    // Code24
-        };
+        // Exibição da interface inicial
 
         System.out.println("\n" +
                 "┏┓      ┓       •  \n" +
                 "┃┃  ━━  ┃┓┏┏┳┓┏┓┓┏┏\n" +
                 "┗┛      ┗┗┫┛┗┗┣┛┗┗┛\n" +
-                "          ┛   ┛    \n");
+                "          ┛   ┛");
 
-        boolean continueGame = true;  // Controla se o usuário quer continuar jogando
+        System.out.println("\nEscolha uma opção:");
+        System.out.println("1 - Jogar");
+        System.out.println("2 - Sair");
 
-        while (continueGame) {
-            // Gerar um número aleatório para escolher um código
-            int codeNumber = random.nextInt(24) + 1; // Aleatório entre 1 e 24
-            showCode(codeNumber);
+        int choice = scanner.nextInt();
+        scanner.nextLine();  // Limpar o buffer do scanner
 
-            // Solicitar a complexidade ao user
-            System.out.println("\nEscolha a complexidade:");
-            System.out.println("1 - O(1)");
-            System.out.println("2 - O(log n)");
-            System.out.println("3 - O(n)");
-            System.out.println("4 - O(n log n)");
-            System.out.println("5 - O(n^2)");
-            System.out.println("6 - O(n^3)");
-            System.out.println("7 - O(2^n)");
-            System.out.println("8 - O(n!)");
+        if (choice == 1) {
+            // Coletar o nome do jogador
+            System.out.print("Digite seu nome de usuário: ");
+            String username = scanner.nextLine();
 
-            // Capturar a resposta do usuário
-            System.out.print("Escolha a complexidade: ");
-            int userAnswer = scanner.nextInt();
+            // Criar uma lista para armazenar os códigos já respondidos
+            Set<Integer> answeredCodes = new HashSet<>();
+            int score = 0;
 
-            // Verificar se a resposta do usuário está correta
-            if (checkComplexity(codeNumber, userAnswer, complexidades)) {
-                System.out.println("Correto!");
-            } else {
-                System.out.println("Errado! Tente novamente.");
+            // Mapear a complexidade de cada Code
+            String[] complexidades = {
+                    "O(1)", "O(1)", "O(1)", "O(log n)", "O(log n)", "O(log n)", "O(n)", "O(n)",
+                    "O(n)", "O(n log n)", "O(n log n)", "O(n log n)", "O(n^2)", "O(n^2)", "O(n^2)",
+                    "O(n^3)", "O(n^3)", "O(n^3)", "O(2^n)", "O(2^n)", "O(2^n)", "O(n!)", "O(n!)", "O(n!)"
+            };
+
+            // Enquanto não tiver respondido todos os códigos, o jogo continua
+            Random random = new Random();
+            while (answeredCodes.size() < 24) {
+                // Gerar um número aleatório de código que não tenha sido respondido ainda
+                int codeNumber;
+                do {
+                    codeNumber = random.nextInt(24) + 1;
+                } while (answeredCodes.contains(codeNumber));
+
+                // Marcar o código como respondido
+                answeredCodes.add(codeNumber);
+
+                // Exibir o código para o jogador
+                showCode(codeNumber);
+
+                // Solicitar a complexidade ao usuário
+                System.out.println("\nEscolha a complexidade:");
+                System.out.println("1 - O(1)");
+                System.out.println("2 - O(log n)");
+                System.out.println("3 - O(n)");
+                System.out.println("4 - O(n log n)");
+                System.out.println("5 - O(n^2)");
+                System.out.println("6 - O(n^3)");
+                System.out.println("7 - O(2^n)");
+                System.out.println("8 - O(n!)");
+
+                // Capturar a resposta do usuário com tratamento de exceção
+                int userAnswer = 0;
+                boolean validAnswer = false;
+                while (!validAnswer) {
+                    try {
+                        System.out.print("Escolha a complexidade: ");
+                        userAnswer = scanner.nextInt();
+
+                        if (userAnswer < 1 || userAnswer > 8) {
+                            System.out.println("Escolha inválida. Por favor, selecione um número entre 1 e 8.");
+                        } else {
+                            validAnswer = true; // Resposta válida, sai do loop
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Entrada inválida. Tente novamente.");
+                        scanner.next(); // Limpar o buffer do scanner
+                    }
+                }
+
+                // Verificar se a resposta do usuário está correta e atualizar a pontuação
+                if (checkComplexity(codeNumber, userAnswer, complexidades)) {
+                    System.out.println("Correto!");
+                    score++; // Incrementar o score
+                } else {
+                    System.out.println("Errado! A complexidade correta é: " + complexidades[codeNumber - 1]);
+                }
             }
 
-            // Perguntar se o usuário deseja continuar para o próximo código
-            System.out.println("\nGostaria de ir para o próximo código?");
-            System.out.println("1 - Sim");
-            System.out.println("2 - Não");
-
-            int choice = scanner.nextInt();
-            if (choice == 2) {
-                continueGame = false;
-            }
+            // Exibir o resultado final
+            System.out.println("\nFim do jogo!");
+            System.out.println("Jogador: " + username);
+            System.out.println("Pontuação: " + score + "/24");
+        } else {
+            System.out.println("Saindo... Até a próxima!");
         }
 
-        System.out.println("Obrigado por jogar!");
         scanner.close();
     }
 
@@ -169,13 +185,11 @@ public class Main {
 
     // Método para verificar se a complexidade fornecida pelo usuário está correta
     public static boolean checkComplexity(int codeNumber, int userAnswer, String[] complexidades) {
-        // Complexidade correta para o código gerado
         String correctComplexity = complexidades[codeNumber - 1];
         String userComplexity = getComplexityFromChoice(userAnswer);
 
-        // Verificar se a complexidade está correta
         return correctComplexity.equals(userComplexity);
-    } // testin error
+    }
 
     // Método para mapear a escolha do usuário para a complexidade correspondente
     public static String getComplexityFromChoice(int choice) {
@@ -197,7 +211,11 @@ public class Main {
             case 8:
                 return "O(n!)";
             default:
-                return "";
+                return "Invalido";  // Retornar "Invalido" para escolhas fora do intervalo
         }
     }
 }
+
+
+
+
