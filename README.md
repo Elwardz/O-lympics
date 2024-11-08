@@ -1,4 +1,7 @@
 # O-lympics: Code Complexity Game
+![27f7a7d3-209e-4924-8b92-143826b4cb7c](https://github.com/user-attachments/assets/bb097bbb-73f0-4843-9b4b-f3163de8456a)
+
+
 
 Este é um projeto Java que permite aos usuários testarem seu conhecimento em complexidade de algoritmos através de um jogo interativo. O objetivo é adivinhar a complexidade de diferentes códigos fornecidos, praticando e consolidando o entendimento de análise de complexidade.
 
