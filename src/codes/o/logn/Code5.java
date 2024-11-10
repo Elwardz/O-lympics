@@ -1,4 +1,4 @@
-package codes;
+package codes.o.logn;
 
 public class Code5 {
     public static void display() {

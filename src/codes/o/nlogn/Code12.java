@@ -1,4 +1,4 @@
-package codes;
+package codes.o.nlogn;
 
 public class Code12 {
     public static void display() {

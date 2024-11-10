@@ -1,4 +1,4 @@
-package codes;
+package codes.o.nfatorial;
 
 public class Code23 {
     public static void display() {

@@ -1,6 +1,30 @@
 package application;
 
-import codes.*;
+import codes.o.logn.Code4;
+import codes.o.logn.Code5;
+import codes.o.logn.Code6;
+import codes.o.n.Code7;
+import codes.o.n.Code8;
+import codes.o.n.Code9;
+import codes.o.n2.Code13;
+import codes.o.n2.Code14;
+import codes.o.n2.Code15;
+import codes.o.n3.Code16;
+import codes.o.n3.Code17;
+import codes.o.n3.Code18;
+import codes.o.nfatorial.Code22;
+import codes.o.nfatorial.Code23;
+import codes.o.nfatorial.Code24;
+import codes.o.nlogn.Code10;
+import codes.o.nlogn.Code11;
+import codes.o.nlogn.Code12;
+import codes.o.o1.Code1;
+import codes.o.o1.Code2;
+import codes.o.o1.Code3;
+import codes.o.o2n.Code19;
+import codes.o.o2n.Code20;
+import codes.o.o2n.Code21;
+
 import java.io.*;
 import java.util.*;
 

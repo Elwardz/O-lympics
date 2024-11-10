@@ -1,4 +1,4 @@
-package codes;
+package codes.o.n;
 
 public class Code9 {
     public static void display() {

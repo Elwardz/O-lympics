@@ -1,4 +1,4 @@
-package codes;
+package codes.o.o1;
 
 public class Code2 {
     public static void display() {
