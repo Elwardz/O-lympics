@@ -1,3 +1,1 @@
-El,16
-Kyo,12
-Ayla,5
+elwardy,5

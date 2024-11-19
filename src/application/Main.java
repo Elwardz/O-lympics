@@ -184,6 +184,12 @@ public class Main {
         }
     }
 
+    public static String getHint(int codeNumber) {
+        switch (codeNumber) {
+
+        }
+    } //// Implementar as dicas!
+
     public static void displayScores() {
         List<String[]> scores = new ArrayList<>();
 
