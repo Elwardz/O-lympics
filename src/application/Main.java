@@ -83,6 +83,8 @@ public class Main {
                 score++;
             } else {
                 System.out.println("Errado! A resposta correta é: " + complexidades.get(codeNumber));
+                // Exibe a dica específica
+                System.out.println("Dica: " + getHint(codeNumber));
             }
         }
 
@@ -175,42 +177,54 @@ public class Main {
         };
     }
 
-    public static void saveScore(String username, int score) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE, true))) {
-            writer.write(username + "," + score);
-            writer.newLine();
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar o score: " + e.getMessage());
+    public static String getHint(int codeNumber) {
+        switch (codeNumber) {
+            case 1: return "Este código tem uma complexidade constante O(1), pois não depende do tamanho da entrada.";
+            case 2: return "Este código tem uma complexidade constante O(1), pois a operação é feita em tempo fixo.";
+            case 3: return "Este código tem uma complexidade constante O(1), pois é uma operação direta.";
+            case 4: return "Este é um algoritmo de busca binária, sua complexidade é O(log n).";
+            case 5: return "Este código é uma busca binária, que reduz pela metade a área de busca a cada passo.";
+            case 6: return "Este código implementa uma busca binária, um algoritmo eficiente com complexidade O(log n).";
+            case 7: return "Este código tem complexidade O(n) porque percorre cada elemento uma vez.";
+            case 8: return "O código percorre cada elemento da entrada, logo é O(n).";
+            case 9: return "A complexidade é O(n), pois a execução do código é proporcional ao tamanho da entrada.";
+            case 10: return "Este código tem uma complexidade O(n log n), como a ordenação utilizando MergeSort.";
+            case 11: return "Esse código possui complexidade O(n log n), como visto em algoritmos de ordenação eficientes.";
+            case 12: return "A complexidade O(n log n) é típica de algoritmos eficientes de ordenação e divisão.";
+            case 13: return "Este código tem complexidade O(n^2), como os algoritmos de ordenação como o BubbleSort.";
+            case 14: return "Este algoritmo tem O(n^2), como em operações de comparação em lista não ordenada.";
+            case 15: return "A complexidade O(n^2) é típica de algoritmos que percorrem dois loops aninhados.";
+            case 16: return "O algoritmo tem complexidade O(n^3), o que ocorre com alguns algoritmos de multiplicação de matrizes.";
+            case 17: return "Este código tem O(n^3), como visto em alguns algoritmos de cubo ou transformação tridimensional.";
+            case 18: return "A complexidade O(n^3) é típica de operações com três dimensões ou loops triplos.";
+            case 19: return "Este código tem complexidade O(2^n), como em algoritmos de força bruta que tentam todas as combinações.";
+            case 20: return "Esse algoritmo possui complexidade O(2^n), um exemplo clássico de algoritmo exponencial.";
+            case 21: return "A complexidade O(2^n) é típica de algoritmos que tentam resolver problemas com soluções combinatórias.";
+            case 22: return "Este código tem complexidade O(n!), como os algoritmos de permutação de n elementos.";
+            case 23: return "A complexidade O(n!) é típica de algoritmos que tentam todas as permutações possíveis.";
+            case 24: return "Esse código tem complexidade O(n!), como algoritmos para resolver problemas como o Caixeiro Viajante.";
+            default: return "Dica não disponível.";
         }
     }
 
-    public static String getHint(int codeNumber) {
-        switch (codeNumber) {
-
+    public static void saveScore(String username, int score) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE, true))) {
+            writer.write(username + ": " + score);
+            writer.newLine();
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar a pontuação.");
         }
-    } //// Implementar as dicas!
+    }
 
     public static void displayScores() {
-        List<String[]> scores = new ArrayList<>();
-
         try (BufferedReader reader = new BufferedReader(new FileReader(SCORE_FILE))) {
             String line;
+            System.out.println("\nPontuações anteriores:");
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                scores.add(parts);
+                System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Erro ao ler o score: " + e.getMessage());
-        }
-
-        scores.sort((a, b) -> Integer.compare(Integer.parseInt(b[1]), Integer.parseInt(a[1])));
-
-        System.out.println("\nTabela de Pontuação:");
-        System.out.printf("%-15s %-10s%n", "Username", "Score");
-        System.out.println("-----------------------------");
-
-        for (String[] scoreEntry : scores) {
-            System.out.printf("%-15s %-10s%n", scoreEntry[0], scoreEntry[1]);
+            System.out.println("Erro ao ler as pontuações.");
         }
     }
 }
