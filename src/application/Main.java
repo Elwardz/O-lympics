@@ -79,12 +79,15 @@ public class Main {
             int userAnswer = scanner.nextInt();
 
             if (checkComplexity(codeNumber, userAnswer, complexidades)) {
+                System.out.println();
                 System.out.println("Correto!");
+                System.out.println();
                 score++;
             } else {
+                System.out.println();
                 System.out.println("Errado! A resposta correta é: " + complexidades.get(codeNumber));
-                // Exibe a dica específica
                 System.out.println("Dica: " + getHint(codeNumber));
+                System.out.println();
             }
         }
 
